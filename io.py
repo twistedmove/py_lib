@@ -3,7 +3,7 @@ IO utility functions.
 
 History
   create  -  Feng Zhou (zhfe99@gmail.com), 03-19-2015
-  modify  -  Feng Zhou (zhfe99@gmail.com), 06-22-2015
+  modify  -  Feng Zhou (zhfe99@gmail.com), 07-05-2015
 """
 import os
 
@@ -240,27 +240,28 @@ def listFile(fold, subx=None):
 
     Input
       fold       -  root fold
+      subx       -  subfix, {None} | 'txt' | ...
 
     Output
-      fileNms    -  directory name list, 1 x n (list)
-      filePaths  -  directory path list, 1 x n (list)
+      fileNms    -  directory name list, n x
+      filePaths  -  directory path list, n x
     """
-    foldNms = []
-    foldPaths = []
+    fileNms = []
+    filePaths = []
 
     for foldNm in os.listdir(fold):
         # fold absolute path
-        foldPath = os.path.join(fold, foldNm)
+        filePath = os.path.join(fold, foldNm)
 
         # skip non fold
-        if not os.path.isdir(foldPath):
+        if not os.path.isdir(filePath):
             continue
 
         # store
-        foldNms.append(foldNm)
-        foldPaths.append(foldPath)
+        fileNms.append(foldNm)
+        filePaths.append(filePath)
 
-    return foldNms, foldPaths
+    return fileNms, filePaths
 
 def getch():
     """
