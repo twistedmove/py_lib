@@ -3,7 +3,7 @@ Common show functions.
 
 History
   create  -  Feng Zhou (zhfe99@gmail.com), 03-19-2015
-  modify  -  Feng Zhou (zhfe99@gmail.com), 07-04-2015
+  modify  -  Feng Zhou (zhfe99@gmail.com), 07-08-2015
 """
 import numpy as np
 import matplotlib.pyplot as plt
@@ -60,7 +60,7 @@ def iniAx(fig, rows, cols, siz=None, wGap=.2, hGap=.2,
 
     # maximum size
     if sizMa is not None:
-        from tool.py_lib.img import imgSizFit
+        from py_lib.img import imgSizFit
         siz, _ = imgSizFit(siz, sizMa);
 
     # figure

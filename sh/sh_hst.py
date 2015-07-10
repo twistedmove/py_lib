@@ -3,11 +3,11 @@ Histogram-related utility functions.
 
 History
   create  -  Feng Zhou (zhfe99@gmail.com), 03-19-2015
-  modify  -  Feng Zhou (zhfe99@gmail.com), 07-04-2015
+  modify  -  Feng Zhou (zhfe99@gmail.com), 07-08-2015
 """
 import numpy as np
 import matplotlib.pyplot as plt
-from tool.py_lib.cell import cells
+from py_lib.cell import cells
 from sh_com import genMkCl
 
 def shHst(mes, devs=[], ax=None, xs=[], barWid=0.8, devWid=0.8, bdWid=0, ori='ver', clG=None):

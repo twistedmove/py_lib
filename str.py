@@ -3,7 +3,7 @@ String-related functions.
 
 History
   create  -  Feng Zhou (zhfe99@gmail.com), 12-16-2014
-  modify  -  Feng Zhou (zhfe99@gmail.com), 02-06-2015
+  modify  -  Feng Zhou (zhfe99@gmail.com), 07-09-2015
 """
 import re
 from cell import zeros
@@ -26,21 +26,23 @@ def strLstPre(lst0, pre):
 
     return lst
 
-def strLstPat(lst0, pat):
+def strLstPat(lst0, pats):
     """
     Return a sub-list of string that match with the specified pattern.
 
     Input
       lst0  -  original string list, 1 x n0
-      pat   -  pattern
+      pats  -  pattern list, m x
 
     Output
       lst   -  new string list, 1 x n
     """
     lst = []
     for str0 in lst0:
-        if re.match(pat, str0):
-            lst.append(str0)
+        for pat in pats:
+            if re.match(pat, str0):
+                lst.append(str0)
+                break
 
     return lst
 
@@ -119,7 +121,7 @@ def strNumCo(s):
 
 def strLst2Float(arrS):
     """
-    Convert a string list to float list.
+    Convert a string list to a float list.
 
     Input
       arrS  -  string list, n x 1 (str)
@@ -127,9 +129,7 @@ def strLst2Float(arrS):
     Output
       arrF  -  float list, n x 1 (float)
     """
-
     arrF = [float(s.strip()) for s in arrS]
-
     return arrF
 
 def strLst1NotIn2(arr1, arr2):

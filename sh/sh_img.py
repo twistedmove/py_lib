@@ -3,7 +3,7 @@ Image-related utility functions.
 
 History
   create  -  Feng Zhou (zhfe99@gmail.com), 03-19-2015
-  modify  -  Feng Zhou (zhfe99@gmail.com), 05-19-2015
+  modify  -  Feng Zhou (zhfe99@gmail.com), 07-09-2015
 """
 import matplotlib.pyplot as plt
 
@@ -69,7 +69,7 @@ def shSvPath(imgPath, type='pdf', dpi=None):
       type     -  type, {'pdf'} | 'png' | 'jpg'
       dpi      -  dpi, {None} | ...
     """
-    from lib.str import strDelSub
+    from py_lib.str import strDelSub
     imgNm = strDelSub(imgPath)
 
     if dpi is None:
