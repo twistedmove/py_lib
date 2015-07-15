@@ -3,7 +3,7 @@ Histogram-related utility functions.
 
 History
   create  -  Feng Zhou (zhfe99@gmail.com), 03-19-2015
-  modify  -  Feng Zhou (zhfe99@gmail.com), 07-08-2015
+  modify  -  Feng Zhou (zhfe99@gmail.com), 07-13-2015
 """
 import numpy as np
 import matplotlib.pyplot as plt
@@ -220,7 +220,7 @@ def shHstG(Me, Dev=[], ax=None, xs=[], barWid=0.8, barWidG=.8, devWid=0.8, bdWid
     # maximum value
     # may = max(ys)
 
-def shCur(Me, Dev, ax=None, xs=[], labs=None, mkSiz=5, edWid=1):
+def shCur(Me, Dev, ax=None, xs=[], labs=None, mkSiz=5, edWid=1, mks=None):
     """
     Plot curve group.
 
@@ -231,6 +231,7 @@ def shCur(Me, Dev, ax=None, xs=[], labs=None, mkSiz=5, edWid=1):
       Dev       -  standard variation matrix, k x n
       ax        -  axis, {None}
       xs        -  x position, {[]} | n x
+      mks       -  markers, {None} | {'o', 's'} | ...
         parMk    -  marker parameter, {[]}
         barWidG  -  width of group of histgram bar, {.8} <= 1
         barWid   -  width of histgram bar in terms of 'barWidG / k', {.8} <= 1
@@ -248,7 +249,9 @@ def shCur(Me, Dev, ax=None, xs=[], labs=None, mkSiz=5, edWid=1):
         fig.sca(ax)
 
     # mk & cl
-    mks, cls = genMkCl()
+    if mks is None:
+        mks, _ = genMkCl()
+    _, cls = genMkCl()
 
     # devWid = ps(varargin, 'devWid', .1);
     # bdWid = ps(varargin, 'bdWid', 1);

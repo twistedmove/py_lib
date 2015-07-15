@@ -1,9 +1,9 @@
 """
-Common show functions.
+Common functions for showing result.
 
 History
   create  -  Feng Zhou (zhfe99@gmail.com), 03-19-2015
-  modify  -  Feng Zhou (zhfe99@gmail.com), 07-08-2015
+  modify  -  Feng Zhou (zhfe99@gmail.com), 07-13-2015
 """
 import numpy as np
 import matplotlib.pyplot as plt

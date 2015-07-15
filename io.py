@@ -3,9 +3,10 @@ IO utility functions.
 
 History
   create  -  Feng Zhou (zhfe99@gmail.com), 03-19-2015
-  modify  -  Feng Zhou (zhfe99@gmail.com), 07-05-2015
+  modify  -  Feng Zhou (zhfe99@gmail.com), 07-14-2015
 """
 import os
+import csv
 
 def loadLns(inpath):
     """
@@ -254,7 +255,11 @@ def listFile(fold, subx=None):
         filePath = os.path.join(fold, foldNm)
 
         # skip non fold
-        if not os.path.isdir(filePath):
+        if os.path.isdir(filePath):
+            continue
+
+        # skip filepath
+        if subx is not None and not filePath.endswith(subx):
             continue
 
         # store
@@ -281,3 +286,39 @@ def getch():
     finally:
         termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
     return c
+
+def loadCsv(csvPath, nLnSkip=0, delimiter=',', quotechar=None):
+    """
+    Load from csv.
+
+    Input
+      csvPath    -  csv path
+      nLnSkip    -  #line to skip in the header, {0} | ...
+      delimiter  -  delimiter, {','} | ...
+      quotechar  -  quotechar, {None} | ...
+
+    Output
+      dcts       -  symbol list, n x
+      keys       -  key list, nKey x
+    """
+    dcts = []
+    with open(csvPath, 'rb') as csvfile:
+        csvHa = csv.reader(csvfile, delimiter=delimiter, quotechar=quotechar)
+        for i, row in enumerate(csvHa):
+            # skip line
+            if i < nLnSkip:
+                continue
+
+            # field name
+            if i == nLnSkip:
+                keys = row
+                nKey = len(row)
+                continue
+
+            # symbol
+            assert(len(row) == nKey)
+            dct = {}
+            for iKey, key in enumerate(keys):
+                dct[key] = row[iKey]
+            dcts.append(dct)
+    return dcts, keys
