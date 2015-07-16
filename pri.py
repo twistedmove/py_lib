@@ -3,7 +3,7 @@ Print-related utility functions.
 
 History
   create  -  Feng Zhou (zhfe99@gmail.com), 03-19-2015
-  modify  -  Feng Zhou (zhfe99@gmail.com), 06-29-2015
+  modify  -  Feng Zhou (zhfe99@gmail.com), 07-16-2015
 """
 import os
 import sys
@@ -11,6 +11,7 @@ import logging
 from util import tic, toc
 
 # global variable
+logFile = None
 lPr = None
 lMaPr = None
 nmPrs = None
@@ -19,14 +20,15 @@ ticPr0s = None
 nRepPrs = None
 scaPrs = None
 
-def prSet(lMa):
+def prSet(lMa, logPath=None):
     """
     Set the promption level.
 
     Input
-      lMa  -  maximum level, 0 | 1 | 2 | ...
+      lMa      -  maximum level, 0 | 1 | 2 | ...
+      logPath  -  log file path, {None} | ...
     """
-    global lPr, lMaPr, nmPrs, ticPrs, ticPr0s, nRepPrs, scaPrs
+    global lPr, lMaPr, nmPrs, ticPrs, ticPr0s, nRepPrs, scaPrs, logFile
 
     # level
     lPr = 0
@@ -39,6 +41,11 @@ def prSet(lMa):
     ticPr0s = range(nMa)
     nRepPrs = range(nMa)
     scaPrs = range(nMa)
+
+    # log
+    if logPath is not None:
+        logFile = logPath
+        logSet(logPath, haNew=True)
 
 def pr(form, *args):
     """
@@ -56,8 +63,12 @@ def pr(form, *args):
             sys.stdout.write('-')
         if len(args) == 0:
             print form
+            if logFile is not None:
+                logging.info(form)
         else:
             print form % args
+            if logFile is not None:
+                logging.info(form % args)
 
 def prIn(nm, form="", *args):
     """
