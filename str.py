@@ -3,7 +3,7 @@ String-related functions.
 
 History
   create  -  Feng Zhou (zhfe99@gmail.com), 12-16-2014
-  modify  -  Feng Zhou (zhfe99@gmail.com), 07-09-2015
+  modify  -  Feng Zhou (zhfe99@gmail.com), 07-16-2015
 """
 import re
 from cell import zeros
@@ -159,3 +159,35 @@ def strLst1NotIn2(arr1, arr2):
         if not found:
             arrD.append(s1)
     return arrD
+
+def str2range(s):
+    """
+    Convert a string range to an integer list.
+
+    Example 1
+      input: s = '1'
+      call:  lst = str2range(s)
+      output: lst = 1
+
+    Example 2
+      input: s = '2:10'
+      call:  lst = str2range(s)
+      output: lst = [2, 3, 4, 5, 6, 7, 8, 9]
+
+    Input
+      s    -  string
+
+    Output
+      lst  -  an integer list
+    """
+    parts = s.split(':')
+    a = [int(part) for part in parts]
+
+    if len(parts) == 1:
+        lst = a[0]
+    elif len(parts) == 2:
+        lst = range(a[0], a[1])
+    else:
+        raise Exception('unsupported')
+
+    return lst
