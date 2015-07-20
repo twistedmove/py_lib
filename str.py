@@ -184,7 +184,7 @@ def str2ran(s):
     a = [int(part) for part in parts]
 
     if len(parts) == 1:
-        lst = a[0]
+        lst = a
     elif len(parts) == 2:
         lst = range(a[0], a[1])
     else:
