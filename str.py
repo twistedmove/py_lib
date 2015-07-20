@@ -3,7 +3,7 @@ String-related functions.
 
 History
   create  -  Feng Zhou (zhfe99@gmail.com), 12-16-2014
-  modify  -  Feng Zhou (zhfe99@gmail.com), 07-16-2015
+  modify  -  Feng Zhou (zhfe99@gmail.com), 07-20-2015
 """
 import re
 from cell import zeros
@@ -160,7 +160,7 @@ def strLst1NotIn2(arr1, arr2):
             arrD.append(s1)
     return arrD
 
-def str2range(s):
+def str2ran(s):
     """
     Convert a string range to an integer list.
 
