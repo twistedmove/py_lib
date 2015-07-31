@@ -3,7 +3,7 @@ Common functions for showing result.
 
 History
   create  -  Feng Zhou (zhfe99@gmail.com), 03-19-2015
-  modify  -  Feng Zhou (zhfe99@gmail.com), 07-13-2015
+  modify  -  Feng Zhou (zhfe99@gmail.com), 07-30-2015
 """
 import numpy as np
 import matplotlib.pyplot as plt
@@ -118,7 +118,7 @@ def show():
     """
     A wrapper of plt.show()
     """
-    plt.show()
+    plt.show(block=False)
 
 def setTick(xy, labs, ori='hor', siz=0):
     """
