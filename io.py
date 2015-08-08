@@ -3,7 +3,7 @@ IO utility functions.
 
 History
   create  -  Feng Zhou (zhfe99@gmail.com), 03-19-2015
-  modify  -  Feng Zhou (zhfe99@gmail.com), 07-14-2015
+  modify  -  Feng Zhou (zhfe99@gmail.com), 08-07-2015
 """
 import os
 import csv
@@ -237,7 +237,7 @@ def listFold(fold):
 
 def listFile(fold, subx=None):
     """
-    Return the list of all files under a folder.
+    Return the list of all files matched with the subfix under a folder.
 
     Input
       fold       -  root fold
@@ -265,6 +265,37 @@ def listFile(fold, subx=None):
         # store
         fileNms.append(foldNm)
         filePaths.append(filePath)
+
+    return fileNms, filePaths
+
+def listFileR(fold, subx=None):
+    """
+    Return the list of all files matched with the subfix recursively under a folder.
+
+    Input
+      fold      -  root fold
+      subx      -  subfix, {None} | 'txt' | ...
+
+    Output
+      fileNms    -  directory name list, n x
+      filePaths  -  directory path list, n x
+    """
+    fileNms = []
+    filePaths = []
+
+    # each sub file
+    for dirname, dirnames, fileNms in os.walk(fold):
+        for fileNm in fileNms:
+            # skip filepath
+            if subx is not None and not fileNm.endswith(subx):
+                continue
+
+            # file and cmd path
+            filePath = os.path.join(dirname, fileNm)
+
+            # store
+            fileNms.append(dirname)
+            filePaths.append(filePath)
 
     return fileNms, filePaths
 
