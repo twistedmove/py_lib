@@ -3,7 +3,7 @@ IO utility functions.
 
 History
   create  -  Feng Zhou (zhfe99@gmail.com), 03-19-2015
-  modify  -  Feng Zhou (zhfe99@gmail.com), 08-07-2015
+  modify  -  Feng Zhou (zhfe99@gmail.com), 08-08-2015
 """
 import os
 import csv
@@ -232,6 +232,32 @@ def listFold(fold):
         # store
         foldNms.append(foldNm)
         foldPaths.append(foldPath)
+
+    return foldNms, foldPaths
+
+def listFoldR(fold):
+    """
+    Return the list of all folders recursively under a folder.
+
+    Input
+      fold       -  root fold
+
+    Output
+      foldNms    -  directory name list, 1 x n (list)
+      foldPaths  -  directory path list, 1 x n (list)
+    """
+    foldNms = []
+    foldPaths = []
+
+    # each sub file
+    for dirname, dirNms, fileNms in os.walk(fold):
+        for dirNm in dirNms:
+            # file and cmd path
+            foldPath = os.path.join(dirname, dirNm)
+
+            # store
+            foldNms.append(dirNm)
+            foldPaths.append(foldPath)
 
     return foldNms, foldPaths
 
