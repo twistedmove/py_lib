@@ -3,7 +3,7 @@ IO utility functions.
 
 History
   create  -  Feng Zhou (zhfe99@gmail.com), 03-19-2015
-  modify  -  Feng Zhou (zhfe99@gmail.com), 08-08-2015
+  modify  -  Feng Zhou (zhfe99@gmail.com), 08-09-2015
 """
 import os
 import csv
@@ -379,3 +379,61 @@ def loadCsv(csvPath, nLnSkip=0, delimiter=',', quotechar=None):
                 dct[key] = row[iKey]
             dcts.append(dct)
     return dcts, keys
+
+def lmdbRIn(lmdbPath):
+    """
+    Get the lmdb handle of a given sequence.
+
+    Input
+      lmdbPath  -  path of the lmdb file
+
+    Output
+      ha        -  handles
+    """
+    import lmdb
+
+    # path file
+    env = lmdb.open(lmdbPath)
+    txn = env.begin()
+    cur = txn.cursor()
+
+    # store
+    ha = {'env': env,
+          'cur': cur,
+          'co': 0,
+          'lmdb': lmdbPath}
+    return ha
+
+def lmdbR(ha):
+    """
+    Read one item from lmdb handle.
+
+    Input
+      ha   -  handles
+
+    Output
+      key  -  key
+      val  -  value
+    """
+    # move cursor
+    if ha['co'] == 0:
+        ha['cur'].first()
+    else:
+        if not ha['cur'].next():
+            return None, None, None
+    ha['co'] += 1
+
+    # get key & value
+    key = ha['cur'].key()
+    val = ha['cur'].value()
+
+    return key, val
+
+def lmdbROut(ha):
+    """
+    Close the handler.
+
+    Input
+      ha  -  handle
+    """
+    ha['env'].close()
