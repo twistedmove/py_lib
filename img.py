@@ -3,7 +3,7 @@ Image utility functions.
 
 History
   create  -  Feng Zhou (zhfe99@gmail.com), 03-19-2015
-  modify  -  Feng Zhou (zhfe99@gmail.com), 06-22-2015
+  modify  -  Feng Zhou (zhfe99@gmail.com), 08-12-2015
 """
 from pri import pr
 from cell import cells
@@ -323,6 +323,40 @@ def imgLoad(imgPath, color=True):
 
     elif img.shape[2] == 4:
         img = img[:, :, :3]
+
+    return img
+
+def imgLoadTxt(txtPaths):
+    """
+    Load image from txt file.
+
+    Input
+      txtPaths  -  txt path, 3 x
+
+    Output
+      img       -  image, h x w x 3
+    """
+    # dimension
+    d = len(txtPaths)
+
+    # load matrix
+    As = []
+    for i in range(d):
+        A = np.loadtxt(txtPaths[i])
+        if i == 0:
+            h = A.shape[0]
+            w = A.shape[1]
+        else:
+            assert(A.shape[0] == h and A.shape[1] == w)
+        As.append(A)
+
+    # merge
+    img = np.zeros((h, w, d))
+    for i in range(d):
+        img[:, :, i] = As[i]
+    img = img / 255
+
+    # import pdb; pdb.set_trace()
 
     return img
 
