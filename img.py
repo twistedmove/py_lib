@@ -3,7 +3,7 @@ Image utility functions.
 
 History
   create  -  Feng Zhou (zhfe99@gmail.com), 03-19-2015
-  modify  -  Feng Zhou (zhfe99@gmail.com), 08-12-2015
+  modify  -  Feng Zhou (zhfe99@gmail.com), 08-13-2015
 """
 from pri import pr
 from cell import cells
@@ -359,6 +359,25 @@ def imgLoadTxt(txtPaths):
     # import pdb; pdb.set_trace()
 
     return img
+
+def imgSaveTxt(img, txtPaths, fmt='%.2f'):
+    """
+    Save image to txt files.
+
+    Input
+      img       -  image
+      txtPaths  -  txt path, 3 x
+      fmt       -  format
+
+    Output
+      img       -  image, h x w x 3
+    """
+    # dimension
+    d = len(txtPaths)
+
+    # load matrix
+    for i in range(d):
+        np.savetxt(txtPaths[i], img[i], fmt)
 
 def imgLoadPil(imgPath):
     """

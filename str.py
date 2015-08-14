@@ -3,7 +3,7 @@ String-related functions.
 
 History
   create  -  Feng Zhou (zhfe99@gmail.com), 12-16-2014
-  modify  -  Feng Zhou (zhfe99@gmail.com), 07-20-2015
+  modify  -  Feng Zhou (zhfe99@gmail.com), 08-13-2015
 """
 import re
 from cell import zeros
@@ -56,7 +56,6 @@ def strDelSub(name0):
     Output
       name   -  new name
     """
-
     tail = name0.find('.')
     if tail == -1:
         name = name0
