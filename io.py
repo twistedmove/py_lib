@@ -3,7 +3,7 @@ IO utility functions.
 
 History
   create  -  Feng Zhou (zhfe99@gmail.com), 03-19-2015
-  modify  -  Feng Zhou (zhfe99@gmail.com), 08-09-2015
+  modify  -  Feng Zhou (zhfe99@gmail.com), 08-16-2015
 """
 import os
 import csv
@@ -437,3 +437,45 @@ def lmdbROut(ha):
       ha  -  handle
     """
     ha['env'].close()
+
+def hdfRIn(hdfPath):
+    """
+    Open an hdf handler.
+
+    Input
+      hdfPath  -  hdf path
+
+    Output
+      ha       -  handler
+    """
+    import h5py
+    ha = h5py.File(hdfPath, 'r')
+
+    return ha
+
+def hdfR(ha, nm='a'):
+    """
+    Read from hdf handler.
+
+    Input
+      ha  -  hdf handler
+      nm  -  name, {'a'}
+
+    Output
+      A   -  result
+    """
+    A0 = ha[nm]
+
+    import numpy as np
+    A = np.array(A0)
+
+    return A
+
+def hdfROut(ha):
+    """
+    Close a HDF handler.
+
+    Input
+      ha  -  hdf handler
+    """
+    ha.close()

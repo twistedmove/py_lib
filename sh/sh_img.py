@@ -3,7 +3,7 @@ Image-related utility functions.
 
 History
   create  -  Feng Zhou (zhfe99@gmail.com), 03-19-2015
-  modify  -  Feng Zhou (zhfe99@gmail.com), 07-09-2015
+  modify  -  Feng Zhou (zhfe99@gmail.com), 08-16-2015
 """
 import matplotlib.pyplot as plt
 
@@ -25,7 +25,7 @@ def shImg(img, isFilt=False, ax=None):
         img /= img.max()
         img = img.transpose(1, 2, 0)
 
-    if img.shape[2] > 1:
+    if len(img.shape) == 2 or img.shape[2] > 1:
         plt.imshow(img)
     else:
         plt.imshow(img[:, :, 0])
