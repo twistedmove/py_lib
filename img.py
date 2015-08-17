@@ -3,7 +3,7 @@ Image utility functions.
 
 History
   create  -  Feng Zhou (zhfe99@gmail.com), 03-19-2015
-  modify  -  Feng Zhou (zhfe99@gmail.com), 08-13-2015
+  modify  -  Feng Zhou (zhfe99@gmail.com), 08-17-2015
 """
 from pri import pr
 from cell import cells
@@ -365,12 +365,9 @@ def imgSaveTxt(img, txtPaths, fmt='%.2f'):
     Save image to txt files.
 
     Input
-      img       -  image
+      img       -  image, 3 x h x w
       txtPaths  -  txt path, 3 x
       fmt       -  format
-
-    Output
-      img       -  image, h x w x 3
     """
     # dimension
     d = len(txtPaths)
