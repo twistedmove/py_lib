@@ -3,7 +3,7 @@ String-related functions.
 
 History
   create  -  Feng Zhou (zhfe99@gmail.com), 12-16-2014
-  modify  -  Feng Zhou (zhfe99@gmail.com), 08-13-2015
+  modify  -  Feng Zhou (zhfe99@gmail.com), 08-22-2015
 """
 import re
 from cell import zeros
@@ -69,10 +69,10 @@ def strGetSub(name):
     Get subfix from a file name.
 
     Input
-      name  -  original name
+      name  -  file name
 
     Output
-      subx  -  new name
+      subx  -  subfix
     """
     tail = name.find('.')
     if tail == -1:
