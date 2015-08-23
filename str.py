@@ -3,10 +3,11 @@ String-related functions.
 
 History
   create  -  Feng Zhou (zhfe99@gmail.com), 12-16-2014
-  modify  -  Feng Zhou (zhfe99@gmail.com), 08-22-2015
+  modify  -  Feng Zhou (zhfe99@gmail.com), 08-23-2015
 """
 import re
 from cell import zeros
+
 
 def strLstPre(lst0, pre):
     """
@@ -25,6 +26,7 @@ def strLstPre(lst0, pre):
             lst.append(str0)
 
     return lst
+
 
 def strLstPat(lst0, pats):
     """
@@ -46,6 +48,7 @@ def strLstPat(lst0, pats):
 
     return lst
 
+
 def strDelSub(name0):
     """
     Remove subfix from a file name.
@@ -63,6 +66,7 @@ def strDelSub(name0):
         name = name0[: tail]
 
     return name
+
 
 def strGetSub(name):
     """
@@ -82,6 +86,7 @@ def strGetSub(name):
 
     return subx
 
+
 def strRepSub(name0, subx):
     """
     Replace subfix to the given one.
@@ -96,6 +101,7 @@ def strRepSub(name0, subx):
     name = strDelSub(name0)
 
     return name + '.' + subx
+
 
 def strNumCo(s):
     """
@@ -118,6 +124,7 @@ def strNumCo(s):
             co += 1
     return co
 
+
 def strLst2Float(arrS):
     """
     Convert a string list to a float list.
@@ -131,9 +138,11 @@ def strLst2Float(arrS):
     arrF = [float(s.strip()) for s in arrS]
     return arrF
 
+
 def strLst1NotIn2(arr1, arr2):
     """
-    Compare two string lists to find the strings in arr1 that are not contained in arr2.
+    Compare two string lists to find the strings in arr1 that
+    are not contained in arr2.
 
     Input
       arr1  -  array 1, n1 x 1
@@ -149,7 +158,7 @@ def strLst1NotIn2(arr1, arr2):
         found = False
         for i2, s2 in enumerate(arr2):
             if vis[i2]:
-                continue;
+                continue
 
             if s1 == s2:
                 vis[i2] = 1
@@ -158,6 +167,7 @@ def strLst1NotIn2(arr1, arr2):
         if not found:
             arrD.append(s1)
     return arrD
+
 
 def str2ran(s):
     """
