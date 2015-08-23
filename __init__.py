@@ -4,7 +4,7 @@ if not os.path.exists('/mnt/develop') and not os.path.exists('/home/ubuntu'):
 from pri import *
 from util import *
 from img import *
-from io import *
+from fio import *
 from cell import *
 from match import *
 from str import *

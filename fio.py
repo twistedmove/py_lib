@@ -3,10 +3,11 @@ IO utility functions.
 
 History
   create  -  Feng Zhou (zhfe99@gmail.com), 03-19-2015
-  modify  -  Feng Zhou (zhfe99@gmail.com), 08-16-2015
+  modify  -  Feng Zhou (zhfe99@gmail.com), 08-23-2015
 """
 import os
 import csv
+
 
 def loadLns(inpath):
     """
@@ -23,6 +24,7 @@ def loadLns(inpath):
     fio.close()
 
     return lines
+
 
 def saveLns(lines, outpath, subx=None):
     """
@@ -44,6 +46,7 @@ def saveLns(lines, outpath, subx=None):
             fio.write(subx)
     fio.close()
 
+
 def mkDir(dirPath, mkL=0):
     """
     Make a fold if not existed.
@@ -62,6 +65,7 @@ def mkDir(dirPath, mkL=0):
             shutil.rmtree(dirPath, ignore_errors=True)
             os.makedirs(dirPath)
 
+
 def cpFile(pathSrc, pathDst):
     """
     Copy file.
@@ -73,6 +77,7 @@ def cpFile(pathSrc, pathDst):
     import shutil
     shutil.copyfile(pathSrc, pathDst)
 
+
 def rmFile(path):
     """
     Delete file if exist.
@@ -82,6 +87,7 @@ def rmFile(path):
     """
     if os.path.exists(path):
         os.remove(path)
+
 
 def save(filepath, data, svL=1):
     """
@@ -100,6 +106,7 @@ def save(filepath, data, svL=1):
     with open(filepath, "w") as fo:
         cPickle.dump(data, fo, protocol=cPickle.HIGHEST_PROTOCOL)
 
+
 def load(filename):
     """
     Load data from a pickle-format file.
@@ -116,6 +123,7 @@ def load(filename):
     data = cPickle.load(fo)
     fo.close()
     return data
+
 
 def loadH5(filename, varNm, dtype=None):
     """
@@ -141,6 +149,7 @@ def loadH5(filename, varNm, dtype=None):
     file.close()
     return data
 
+
 def saveH5(filename, data, varNm):
     """
     Save data in hdf5 file.
@@ -154,6 +163,7 @@ def saveH5(filename, data, varNm):
     file = h5py.File(filename, "w")
     file.create_dataset(varNm, data=data)
     file.close()
+
 
 def savePath(fold, prex, subx=None, type=None):
     """
@@ -178,13 +188,14 @@ def savePath(fold, prex, subx=None, type=None):
     if subx is not None:
         prex = prex + '_' + subx
 
-    if type == None:
+    if type is None:
         path = os.path.join(saveFold, prex)
     elif type == 'txt':
         path = os.path.join(saveFold, prex + '.txt')
     else:
         raise Exception('unknown type: {}'.format(type))
     return path
+
 
 def exist(nm, type='file'):
     """
@@ -206,6 +217,7 @@ def exist(nm, type='file'):
 
     else:
         raise Exception('unknown type: {}'.format(type))
+
 
 def listFold(fold):
     """
@@ -235,6 +247,7 @@ def listFold(fold):
 
     return foldNms, foldPaths
 
+
 def listFoldR(fold):
     """
     Return the list of all folders recursively under a folder.
@@ -260,6 +273,7 @@ def listFoldR(fold):
             foldPaths.append(foldPath)
 
     return foldNms, foldPaths
+
 
 def listFile(fold, subx=None):
     """
@@ -294,9 +308,11 @@ def listFile(fold, subx=None):
 
     return fileNms, filePaths
 
+
 def listFileR(fold, subx=None):
     """
-    Return the list of all files matched with the subfix recursively under a folder.
+    Return the list of all files matched with the subfix recursively
+    under a folder.
 
     Input
       fold      -  root fold
@@ -325,6 +341,7 @@ def listFileR(fold, subx=None):
 
     return fileNms, filePaths
 
+
 def getch():
     """
     Get one char from input.
@@ -333,7 +350,8 @@ def getch():
       c  -  character
     """
     import termios
-    import sys, tty
+    import sys
+    import tty
 
     fd = sys.stdin.fileno()
     old_settings = termios.tcgetattr(fd)
@@ -343,6 +361,7 @@ def getch():
     finally:
         termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
     return c
+
 
 def loadCsv(csvPath, nLnSkip=0, delimiter=',', quotechar=None):
     """
@@ -380,6 +399,7 @@ def loadCsv(csvPath, nLnSkip=0, delimiter=',', quotechar=None):
             dcts.append(dct)
     return dcts, keys
 
+
 def lmdbRIn(lmdbPath):
     """
     Get the lmdb handle of a given sequence.
@@ -403,6 +423,7 @@ def lmdbRIn(lmdbPath):
           'co': 0,
           'lmdb': lmdbPath}
     return ha
+
 
 def lmdbR(ha):
     """
@@ -429,6 +450,7 @@ def lmdbR(ha):
 
     return key, val
 
+
 def lmdbROut(ha):
     """
     Close the handler.
@@ -437,6 +459,7 @@ def lmdbROut(ha):
       ha  -  handle
     """
     ha['env'].close()
+
 
 def hdfRIn(hdfPath):
     """
@@ -452,6 +475,7 @@ def hdfRIn(hdfPath):
     ha = h5py.File(hdfPath, 'r')
 
     return ha
+
 
 def hdfR(ha, nm='a'):
     """
@@ -470,6 +494,7 @@ def hdfR(ha, nm='a'):
     A = np.array(A0)
 
     return A
+
 
 def hdfROut(ha):
     """
