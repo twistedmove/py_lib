@@ -3,7 +3,7 @@ Image utility functions.
 
 History
   create  -  Feng Zhou (zhfe99@gmail.com), 03-19-2015
-  modify  -  Feng Zhou (zhfe99@gmail.com), 08-17-2015
+  modify  -  Feng Zhou (zhfe99@gmail.com), 08-24-2015
 """
 from pri import pr
 from cell import cells
@@ -309,6 +309,8 @@ def imgLoad(imgPath, color=True):
     # load
     try:
         img0 = skimage.io.imread(imgPath)
+        import pdb; pdb.set_trace()
+
         img = skimage.img_as_float(img0).astype(np.float32)
 
     except:
