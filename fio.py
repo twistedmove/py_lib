@@ -3,7 +3,7 @@ IO utility functions.
 
 History
   create  -  Feng Zhou (zhfe99@gmail.com), 03-19-2015
-  modify  -  Feng Zhou (zhfe99@gmail.com), 08-23-2015
+  modify  -  Feng Zhou (zhfe99@gmail.com), 08-24-2015
 """
 import os
 import csv
@@ -178,7 +178,7 @@ def savePath(fold, prex, subx=None, type=None):
     Output
       path  -  file path
     """
-    saveFold = os.path.expanduser('~/work/save')
+    saveFold = os.getenv('save', os.path.join(os.environ['HOME'], 'save'))
     saveFold = os.path.join(saveFold, fold)
 
     # create fold if necessary
