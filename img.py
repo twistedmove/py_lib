@@ -11,6 +11,7 @@ import skimage.io
 import PIL
 import numpy as np
 
+
 def imgCrop(img0, box, isOkOut=False):
     """
     Crop an image patch within a bounding box.
@@ -50,6 +51,7 @@ def imgCrop(img0, box, isOkOut=False):
     img = img0[yHd : yEd, xHd : xEd, :]
     return img
 
+
 def imgIplCrop(imgPath0, imgPath, target_h=120, target_w=90):
     img = PIL.Image.open(imgPath0)
     [w, h] = (img.size[0], img.size[1])
@@ -70,6 +72,7 @@ def imgIplCrop(imgPath0, imgPath, target_h=120, target_w=90):
     img = img.crop(bbox)
     img.thumbnail(size, PIL.Image.ANTIALIAS)
     img.convert('RGB').save(imgPath, "JPEG")
+
 
 def imgCropSca(img0, h=120, w=90):
     """
@@ -113,6 +116,7 @@ def imgCropSca(img0, h=120, w=90):
 
     return img
 
+
 def imgMeans(Img):
     """
     Compute the mean image.
@@ -131,6 +135,7 @@ def imgMeans(Img):
         imgs[i] = imgMean(Img[i])
 
     return imgs
+
 
 def imgMean(imgs):
     """
@@ -155,7 +160,11 @@ def imgMean(imgs):
     for imgi in imgs:
         sizi = imgi.shape
         # pad
-        imgi = np.lib.pad(imgi, ((0, siz[0] - sizi[0]), (0, siz[1] - sizi[1]), (0, siz[2] - sizi[2])), 'constant')
+        imgi = np.lib.pad(imgi,
+                          ((0, siz[0] - sizi[0]),
+                           (0, siz[1] - sizi[1]),
+                           (0, siz[2] - sizi[2])),
+                          'constant')
 
         # resize
         img += imgi
@@ -163,6 +172,7 @@ def imgMean(imgs):
     # average
     img /= n
     return img
+
 
 def imgSizNew(img0, siz, order=1):
     """
@@ -195,6 +205,7 @@ def imgSizNew(img0, siz, order=1):
 
     return resized_im.astype(np.float32)
 
+
 def imgSizEqW(siz0, w):
     """
     Adjust the image size to fit with the width.
@@ -225,9 +236,11 @@ def imgSizEqW(siz0, w):
 
     return siz
 
+
 def imgSizFit(siz0, sizMa):
     """
-    Adjust the image size to fit with the maximum size constraint but keeping the ratio.
+    Adjust the image size to fit with the maximum size constraint
+    but keeping the ratio.
 
     Input
       siz0   -  original size, 2 x | 3 x
@@ -309,8 +322,6 @@ def imgLoad(imgPath, color=True):
     # load
     try:
         img0 = skimage.io.imread(imgPath)
-        import pdb; pdb.set_trace()
-
         img = skimage.img_as_float(img0).astype(np.float32)
 
     except:
