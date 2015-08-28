@@ -3,7 +3,7 @@ Print-related utility functions.
 
 History
   create  -  Feng Zhou (zhfe99@gmail.com), 03-19-2015
-  modify  -  Feng Zhou (zhfe99@gmail.com), 08-13-2015
+  modify  -  Feng Zhou (zhfe99@gmail.com), 2015-08
 """
 import os
 import sys
